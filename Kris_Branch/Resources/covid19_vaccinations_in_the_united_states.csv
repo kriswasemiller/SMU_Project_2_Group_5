@@ -1,4 +1,4 @@
-State/Territory/Federal Entity,Total Delivered,Total Administered,Delivered per 100K,Administered per 100K,People with 1+ Doses,People with 1+ Doses per 100K,People with 2 Doses,People with 2 Doses Per 100K
+State_Territory_Federal_Entity,Total_Delivered,Total_Administered,Delivered_per_100K,Administered_per_100K,People_with_1+_Doses,People_with_1+_Doses_per_100K,People_with 2_Doses,People_with_2_Doses_Per_100K
 Alaska,245700,134002,33586,18318,101225,13837,32593,4455
 Alabama,799875,430597,16313,8782,353522,7210,76603,1562
 Arkansas,535550,351175,17746,11637,274459,9095,73810,2446
