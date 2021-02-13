@@ -3,7 +3,9 @@ $(document).ready(function() {
 
     //event listener
     $(window).resize(function() {
-        makePlot();
+        // makePlot();
+
+        $('#myTable').DataTable();
     });
 });
 
@@ -36,14 +38,14 @@ function makeMap() {
         $("#scatter").empty();
 
         // var svgWidth = 960;
-        var svgWidth = window.innerWidth;
+        var svgWidth = 1300;
         var svgHeight = 500;
 
         var margin = {
             top: 20,
             right: 40,
             bottom: 60,
-            left: 50
+            left: 80
         };
         var chart_width = svgWidth - margin.left - margin.right;
         var chart_height = svgHeight - margin.top - margin.bottom;
@@ -112,15 +114,15 @@ function makeMap() {
         chartGroup.append("text")
             .attr("transform", "rotate(-90)")
             .attr("y", 0 - margin.left + 0)
-            .attr("x", 0 - (chart_height / 2))
+            .attr("x", 0 - (chart_height / 1.5))
             .attr("dy", "1em")
             .attr("class", "axisText")
-            .text("Total Administered %");
+            .text("Total Administered");
 
         chartGroup.append("text")
             .attr("transform", `translate(${chart_width / 2}, ${chart_height + margin.top + 30})`)
             .attr("class", "axisText")
-            .text("Total Delivered %");
+            .text("Total Delivered");
 
         // STEP 8: create tooltip 
         // Step 1: Initialize Tooltip
@@ -128,7 +130,7 @@ function makeMap() {
             .attr("class", "d3-tip")
             .offset([150, -60])
             .html(function(d) {
-                return (`<strong>${d.State_Territory_Federal_Entity}<strong><hr><strong>Total Delivered: ${d.Total_Delivered}%, Total Administered: ${d.Total_Administered}%</strong>`);
+                return (`<strong>${d.State_Territory_Federal_Entity}<strong><hr><strong>Total Delivered: ${d.Total_Delivered}, Total Administered: ${d.Total_Administered}</strong>`);
             });
 
         // Step 2: Create the tooltip in chartGroup.
@@ -142,7 +144,7 @@ function makeMap() {
                 d3.select(this)
                     .transition()
                     .duration(1000)
-                    .attr("r", 100);
+                    .attr("r", 40);
             })
             // Step 4: Create "mouseout" event listener to hide tooltip
             .on("mouseout", function(event, d) {
