@@ -102,6 +102,7 @@ function makeMap() {
             .data(data2)
             .enter()
             .append("circle")
+            // .filter(function(d) { return d.close < 0 })
             .attr("cx", d => xScale(d.Total_Delivered))
             .attr("cy", d => yScale(d.Total_Administered))
             .attr("r", "15")
