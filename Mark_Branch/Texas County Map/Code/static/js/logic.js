@@ -3,11 +3,18 @@ var myMap = "";
 
 $(document).ready(function() {
     makeMap();
+
+    // event listener
+    $("#column").change(function() {
+        makeMap();
+    });
 });
 
 //this function is going to grab the data needed for the map
 function makeMap() {
-
+    // set title
+    var column_text = $("#column option:selected").text();
+    $("#maptitle").text(`${column_text} by County`);
     var geoData = "static/data/us-county-boundaries.geojson";
     var csv = "static/data/COVID-19 Vaccine Data by County.csv"
 
@@ -31,6 +38,8 @@ function makeMap() {
 
 // this function builds the map with leaflet
 function buildMap(data, data2) {
+    $("#mapcontainer").empty();
+    $("#mapcontainer").append(`<div id="map"></div>`);
     // Step 0: Create the Tile Layers
     // Add a tile layer
     var dark_mode = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
@@ -63,7 +72,7 @@ function buildMap(data, data2) {
     // STEP 1: INIT MAP
     // Create a map object
     myMap = L.map("map", {
-        center: [31.9686, -99.9018],
+        center: [31.5, -100],
         zoom: 6,
         layers: dark_mode
     });
@@ -80,8 +89,8 @@ function buildMap(data, data2) {
 
     var county_group = L.layerGroup(county_list);
     county_group.addTo(myMap);
-
-    var minimum = data2.map(x => parseFloat(x["Vaccine Doses Administered"].replace(/,/g, '')));
+    var column = $("#column").val();
+    var minimum = data2.map(x => parseFloat(x[column].replace(/,/g, '')));
     minimum = minimum.filter(x => x);
     minimum = Math.min(...minimum);
     // Create Layer Legend
@@ -103,18 +112,18 @@ function buildMap(data, data2) {
         var div = L.DomUtil.create("div", "info legend");
 
         // create legend as raw html
-        var legendInfo = `<h2 style = "margin-bottom:5px"> Vaccine Doses Administered </h2>
+        var legendInfo = `<h2 style = "margin-bottom:5px"> ${column} </h2>
         <div>
         <div style = "background:yellow;height:10px;width:10px;display:inline-block"> </div> 
-        <div style = "display:inline-block"> Less than ${Math.round(minimum**2.5)} doses</div>
+        <div style = "display:inline-block"> Less than ${Math.round(minimum**2)} doses</div>
         </div> 
         <div>
         <div style = "background:orange;height:10px;width:10px;display:inline-block"></div> 
-        <div style = "display:inline-block">${Math.round(minimum**2.5)} - ${Math.round(minimum**3.5)} doses</div>
+        <div style = "display:inline-block">${Math.round(minimum**2)} - ${Math.round(minimum**3)} doses</div>
         </div>
         <div>
         <div style = "background:red;height:10px;width:10px;display:inline-block"></div>
-        <div style = "display:inline-block">More than ${Math.round(minimum**3.5)} doses</div>
+        <div style = "display:inline-block">More than ${Math.round(minimum**3)} doses</div>
         </div>`;
         div.innerHTML = legendInfo;
         return (div)
@@ -126,8 +135,9 @@ function buildMap(data, data2) {
 }
 
 function getStyle(feature, data2) {
+    var column = $("#column").val();
     var filtered = data2.filter(x => x["County Name"] == feature.properties.name)[0];
-    var minimum = data2.map(x => parseFloat(x["Vaccine Doses Administered"].replace(/,/g, '')));
+    var minimum = data2.map(x => parseFloat(x[column].replace(/,/g, '')));
     minimum = minimum.filter(x => x);
     minimum = Math.min(...minimum);
     var mapStyle = {
@@ -140,21 +150,23 @@ function getStyle(feature, data2) {
 }
 
 function chooseColor(filtered, minimum) {
-    var doses = parseFloat(filtered["Vaccine Doses Administered"].replace(/,/g, ''));
-    if (doses > (minimum ** 3.5)) {
+    var column = $("#column").val();
+    var doses = parseFloat(filtered[column].replace(/,/g, ''));
+    if (doses > (minimum ** 3)) {
         color = "red";
-    } else if (doses > (minimum ** 2.5)) {
+    } else if (doses > (minimum ** 2)) {
         color = "orange"
     } else { color = "yellow" }
     return (color)
 }
 
 function onEachFeature(feature, layer, data2) {
+    var column = $("#column").val();
     var filtered = data2.filter(x => x["County Name"] == feature.properties.name)[0];
-    var doses = parseFloat(filtered["Vaccine Doses Administered"].replace(/,/g, ''));
+    var doses = parseFloat(filtered[column].replace(/,/g, ''));
     // does this feature have a property named name?
     if (feature.properties && feature.properties.name) {
-        layer.bindPopup(`<h3>${feature.properties.name}<br>Vaccine Doses: ${doses}<br></h3>`);
+        layer.bindPopup(`<h3>${feature.properties.name}<br>${column}: ${doses}<br></h3>`);
     }
     // set mouse events
     layer.on({

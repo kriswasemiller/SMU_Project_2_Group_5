@@ -3,18 +3,12 @@ body {
     margin: 0;
 }
 
-#map,
-body,
-html {
-    height: 100%;
-}
-
-.leaflet-popup-content {
-    text-align: center;
+#map {
+    height: 650px;
 }
 
 
-/* CSS from the Leaflet-Choropleth documentation */
+/* STYLING FOR THE LEGEND */
 
 .legend {
     padding: 6px 8px;
@@ -47,8 +41,4 @@ html {
 
 .legend .max {
     float: right;
-}
-
-h1 {
-    text-align: center;
 }
