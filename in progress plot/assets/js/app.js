@@ -9,7 +9,7 @@ $(document).ready(function() {
 });
 
 function doWork() {
-    d3.csv("assets/data/COVID_CASES.csv").then(function(data_covid) {
+    d3.csv("assets/data/covid_clean.csv").then(function(data_covid) {
         console.log(data_covid);
 
         // 1): canvas set up
@@ -102,7 +102,7 @@ function doWork() {
             .attr("class", "d3-tip")
             .offset([180, -60])
             .html(function(d) {
-                return (`<strong>${d.state}<strong><hr><strong>Poverty: ${d.tot_cases}`);
+                return (`State:<strong>${d.state}<strong><hr><strong>Total Cases: ${d.tot_cases}`);
             });
 
         // 5b) Create the tooltip in chartGroup.
@@ -136,12 +136,12 @@ function doWork() {
             .attr("x", 0 - (chartHeight / 2))
             .attr("dy", "1em")
             .attr("class", "axisText")
-            .text("% That Lacks Healthcare");
+            .text("Confirmed Cases");
 
         chartGroup.append("text")
             .attr("transform", `translate(${chartWidth / 2}, ${chartHeight + margin.top + 30})`)
             .attr("class", "axisText")
-            .text("Poverty %");
+            .text("State");
 
 
     }).catch(function(error) {
