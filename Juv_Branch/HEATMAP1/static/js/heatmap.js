@@ -16,7 +16,7 @@ function makeMap() {
         url: queryUrl,
         success: function(data) {
             data = JSON.parse(data);
-            console.log(data);
+            // console.log(data);
 
             buildMap(data);
         },
