@@ -15,7 +15,7 @@ function doWork() {
             row.tot_cases = +row.tot_cases;
             row.state = row.state;
         });
-        console.log(data_covid);
+        // console.log(data_covid);
 
         // 1): canvas set up
         $("#scatter").empty();
