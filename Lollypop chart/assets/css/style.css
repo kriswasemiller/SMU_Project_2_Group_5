@@ -17,17 +17,22 @@ body {
     background-color: #FFFFFF;
 }
 
-#footer {
+
+/* #footer {
     position: absolute;
     bottom: 0;
-    width: 100%;
-    /* Set the fixed height of the footer here */
-    height: 10px;
+    width: 100%; */
+
+
+/* Set the fixed height of the footer here */
+
+
+/* height: 10px;
     padding-top: 20px;
     padding-bottom: 40px;
     text-align: center;
     background-color: #FEC8D8;
-}
+} */
 
 #footer p {
     margin: 0;

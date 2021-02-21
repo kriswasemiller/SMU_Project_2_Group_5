@@ -9,7 +9,7 @@ $(document).ready(function() {
 });
 
 function doWork() {
-    d3.csv("assets/data/test.csv").then(function(data_covid) {
+    d3.csv("assets/data/COVID_LOLLYPOP.csv").then(function(data_covid) {
         // 3) prepare data
         data_covid.forEach(function(row) {
             row.tot_cases = +row.tot_cases;
@@ -24,7 +24,7 @@ function doWork() {
         var svg_height = 500;
 
         var margin = {
-            top: 20,
+            top: 30,
             right: 40,
             bottom: 60,
             left: 80
@@ -113,7 +113,7 @@ function doWork() {
             .attr("class", "d3-tip")
             .offset([180, -60])
             .html(function(d) {
-                return (`State:<strong>${d.state}<strong><hr><strong>Total Cases: ${d.tot_cases}`);
+                return (`<strong>State: <strong>${d.state}<strong><hr><strong>Total Cases: ${d.tot_cases}`);
             });
 
         // 5b) Create the tooltip in chartGroup.
