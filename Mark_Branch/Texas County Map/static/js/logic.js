@@ -113,15 +113,19 @@ function buildMap(data, data2) {
         var legendInfo = `<h2 style = "margin-bottom:5px"> ${column} </h2>
         <div>
         <div style = "background:yellow;height:10px;width:10px;display:inline-block"> </div> 
-        <div style = "display:inline-block"> Less than ${Math.round(minimum*100)} doses</div>
+        <div style = "display:inline-block"> Less than 1,000 doses</div>
         </div> 
         <div>
-        <div style = "background:orange;height:10px;width:10px;display:inline-block"></div> 
-        <div style = "display:inline-block">${Math.round(minimum*100)} - ${Math.round(minimum*1000)} doses</div>
+        <div style = "background:orange;height:10px;width:10px;display:inline-block"> </div> 
+        <div style = "display:inline-block">1,000 - 10,000 doses</div>
+        </div> 
+        <div>
+        <div style = "background:red;height:10px;width:10px;display:inline-block"></div> 
+        <div style = "display:inline-block">10,000 - 100,000 doses</div>
         </div>
         <div>
-        <div style = "background:red;height:10px;width:10px;display:inline-block"></div>
-        <div style = "display:inline-block">More than ${Math.round(minimum*1000)} doses</div>
+        <div style = "background:darkred;height:10px;width:10px;display:inline-block"></div>
+        <div style = "display:inline-block">More than 100,000 doses</div>
         </div>`;
         div.innerHTML = legendInfo;
         return (div)
@@ -150,9 +154,11 @@ function getStyle(feature, data2) {
 function chooseColor(filtered, minimum) {
     var column = $("#column").val();
     var doses = parseFloat(filtered[column].replace(/,/g, ''));
-    if (doses > (minimum * 1000)) {
-        color = "red";
-    } else if (doses > (minimum * 100)) {
+    if (doses > 100000) {
+        color = "darkred";
+    } else if (doses > 10000) {
+        color = "red"
+    } else if (doses > 1000) {
         color = "orange"
     } else { color = "yellow" }
     return (color)
