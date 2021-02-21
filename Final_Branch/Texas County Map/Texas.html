@@ -27,26 +27,34 @@
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="/index.html"><img src="https://t4.ftcdn.net/jpg/02/95/08/79/360_F_295087973_OEp5c42ZxdiYWPhLrkIldyr4ulJyMQGa.jpg" height="50px" width="50px"></a>
+        <a class="navbar-brand" href="/index.html"><img src="https://upload.wikimedia.org/wikipedia/commons/8/82/SARS-CoV-2_without_background.png" height="50px" width="50px"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
         <div class="collapse navbar-collapse" id="navbarColor03">
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="index.html">Welcome</a>
+                    <a class="nav-link" href="#">Texas COVID Vaccines
+                  </a>
                 </li>
-                <li class="nav-item dropdown">
+            </ul>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarColor03">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/index.html">Welcome</a>
+                </li>
+                <li class="nav-item dropdown active">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Plots</a>
-                    <div class="dropdown-menu bg-light">
-                        <a class="dropdown-item" href="Texas County Map/Texas.html">Texas</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="Texas.html">Texas</a>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="comparisons.html">Comparisons</a>
+                    <a class="nav-link" href="../comparisons.html">Comparisons</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="data.html">Data</a>
+                    <a class="nav-link" href="../data.html">Data</a>
                 </li>
             </ul>
         </div>
@@ -58,19 +66,11 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-
-        <div class="collapse navbar-collapse" id="navbarColor01">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Texas COVID Vaccines
-              </a>
-                </li>
-            </ul>
-        </div>
     </nav>
+
     <hr style="color:lightgray; border-width: 3px;">
     <div class="container">
-        <div class="card border-primary mb-3" style="max-width: 20rem;">
+        <div class="card border-primary mb-3" style="max-width: 15rem;">
             <div class="card-header">Filters</div>
             <div class="card-body">
                 <select id="column">
@@ -84,7 +84,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <h1 id="maptitle"></h1>
+                <h2 id="maptitle"></h2>
             </div>
         </div>
 
