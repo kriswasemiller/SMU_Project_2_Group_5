@@ -59,7 +59,7 @@ function buildMap(data) {
 
     // STEP 1: INIT MAP
     // Create a map object
-    myMap = L.map("map", {
+    myMap = L.map("#heatmap", {
         center: [37.0902, -95.7129],
         zoom: 4.45,
         layers: dark_mode
