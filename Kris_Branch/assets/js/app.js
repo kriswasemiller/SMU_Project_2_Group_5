@@ -90,8 +90,8 @@ function doWork() {
             .attr("cy", d => yScale(d.tot_cases))
             .attr("r", "18")
             .style("opacity", 0.5)
-            .attr("fill", "blue")
-            .attr("stroke", "black")
+            .attr("fill", "purple")
+            .attr("stroke", "navy")
             .attr("stroke-width", "1")
             .classed("stateCircle", true);
 
